@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!❤</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #000428, #004e92); /* سما ليلية مع النجوم */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        #message-container {
+            text-align: center;
+            font-size: 50px;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        #message-container h1 {
+            font-size: 70px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin-top: 0;
+        }
+
+        #message-container p {
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            margin-top: 5px;
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            white-space: pre-wrap;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        #play-music-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #4caf50; /* لون أخضر متناسق مع الخلفية */
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        #play-music-button:hover {
+            background-color: #3e8e41;
+        }
+
+        #profile-image {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #profile-image img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #3e8e41;
+            margin-right: 10px;
+        }
+
+        #profile-image span {
+            font-size: 26px;
+            color: #fff;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        #signature-image {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #signature-image img {
+            width:150px; /* حجم الصورة الصغيرة */
+            height: auto;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+        }
+
+        /* قائمة الأغاني المنسدلة */
+        #music-menu {
+            position: fixed;
+            top: calc(50% + 400px); /* وضع القائمة أسفل الرسالة */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.212);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            z-index: 100;
+        }
+
+        #music-menu select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #000000;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            #message-container {
+                font-size: 30px;
+                max-height: 50vh;
+                top: 10%;
+            }
+
+            #message-container h1 {
+                font-size: 40px;
+            }
+
+            #message-container p {
+                font-size: 18px;
+            }
+
+            #play-music-button {
+                font-size: 14px;
+            }
+
+            #profile-image span {
+                font-size: 14px;
+            }
+
+            #profile-image img {
+                width: 40px;
+                height: 40px;
+            }
+
+            #signature-image img {
+                width: 70px;
+            }
+
+            #music-menu {
+                width: 200px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="message-container">
+    <h1>❤ Happy Birthday ❤</h1>
+    <p id="message-text"></p>
+    <!-- صورة التوقيع بدلاً من النص -->
+    <div id="signature-image">
+        <img src="signature-image.jpg" alt="Signature Image">
+    </div>
+</div>
+
+<!-- زر تشغيل الموسيقى -->
+<button id="play-music-button" onclick="toggleMusic()">Play Music</button>
+
+<!-- صورة بروفايل و الاسم -->
+<div id="profile-image">
+    <img src="profile-image.jpg" alt="profile-image">
+    <span>Menna N. Muhammed</span>
+</div>
+
+<!-- قائمة الأغاني المنسدلة -->
+<div id="music-menu">
+    <select id="music-select" onchange="changeMusic()">
+        <option value="">Select a song</option>
+        <option value="song1.mp3">Song 1</option>
+        <option value="song2.mp3">Song 2</option>
+        <option value="song3.mp3">Song 3</option>
+        <option value="song4.mp3">Song 4</option>
+        <option value="song5.mp3">Song 5</option>
+    </select>
+</div>
+
+<audio id="background-music" preload="auto"></audio>
+<audio id="typing-sound" src="typing-sound.mp3" preload="auto"></audio>
+<script>
+    const text = " كل سنة و أنتِ طيبة يا حبيبتي ، كل سنة و أنتِ معايا ، كل سنة و أنتِ جميلة ، برغم إنها أول سنة و إحنا سوا بس حقيقي فعلا بتمني أنها متكونش أبدًا الأخيرة بينا ، هتفضلي دايمًا جمبي و معايا و بجد حقيقي أنا مبسوط بوجود منة معايا و مبسوط بهزارها و علي فكرا دمك خفيف جدًا علي فكرا بس أنا الي بحب ارخم شوية و براحتي طبعًا بس حقيقي بجد أنا عمري ولا هيكون هشام مبسوط بـ الشكل دا إلا لو منة فعلًا موجودة دايمًا معاه و أشوفها دايمًا بخير و ناجحة و أتمني حقيقي فعلًا أنك تكوني مبسوطة لأنك بجد فارقة جدًا معايا يا منة و أكتر من نفسي و أكتر من أي حد ، ف علشان خاطري خليكي دايمًا بخير و مبسوطة ، أنا بحبك و بحب أشوفك ضحكتك و بحب أشوفك مبسوطة ، أنا بحبك أوي و الله يا منة وهفضل أحبك ، كل سنة و أنتي طيبة يا قلب مشمش";
+    const messageElement = document.getElementById("message-text");
+    const audio = document.getElementById("background-music");
+    let index = 0;
+
+    function typeText() {
+        if (index < text.length) {
+            messageElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeText, 100); // تأخير بين الحروف
+        } else {
+        }
+    }
+
+    function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            document.getElementById("play-music-button").textContent = "Pause Music";
+        } else {
+            audio.pause();
+            document.getElementById("play-music-button").textContent = "Play Music";
+        }
+    }
+
+    function changeMusic() {
+        const select = document.getElementById("music-select");
+        const selectedSong = select.value;
+        if (selectedSong) {
+            audio.src = selectedSong;
+            audio.play();
+            document.getElementById("play-music-button").textContent = "Pause Music";
+        }
+    }
+    
+
+    window.onload = function() {
+        typeText(); // ابدأ كتابة النص عند تحميل الصفحة
+    };
+</script>
+
+</body>
+</html>
