@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: radial-gradient(circle, #000428, #004e92); /* تدرج لوني يشبه السماء الليلية */
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+            overflow: hidden;
+            padding: 0 20px;
+            position: relative;
+        }
+        /* نجوم متحركة */
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+        .star:nth-child(1) { top: 10%; left: 20%; width: 2px; height: 2px; }
+        .star:nth-child(2) { top: 30%; left: 50%; width: 3px; height: 3px; }
+        .star:nth-child(3) { top: 50%; left: 70%; width: 1px; height: 1px; }
+        .star:nth-child(4) { top: 70%; left: 30%; width: 2px; height: 2px; }
+        .star:nth-child(5) { top: 20%; left: 80%; width: 3px; height: 3px; }
+
+        #header-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 36px;
+            color: #ffffff;
+            font-family: 'Brush Script MT', cursive;
+            text-shadow: 1px 1px 3px #000000;
+        }
+        #password-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        #profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border: 5px solid #4caf50;
+        }
+        input[type="password"] {
+            padding: 15px;
+            font-size: 20px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+            width: 80%;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+        #countdown-container {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 24px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        #countdown {
+            font-size: 36px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        #forget-password-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        #forget-password-button:hover {
+            background-color: #3e8e41;
+        }
+        #forget-password-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            z-index: 1000;
+        }
+        #forget-password-modal p {
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        #forget-password-modal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: #ffffff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #forget-password-modal button:hover {
+            background-color: #3e8e41;
+        }
+
+        /* تصميم الموبايل */
+        @media only screen and (max-width: 768px) {
+            #profile-image {
+                width: 70px;
+                height: 70px;
+            }
+            #password-container {
+                padding: 5px;
+                margin-bottom: 5px;
+            }
+            #header-text {
+                font-size: 20px;
+                top: 10px;
+            }
+            input[type="password"] {
+                width: 70%;
+                font-size: 14px;
+            }
+            button {
+                font-size: 9px;
+            }
+            #countdown {
+                font-size: 14px;
+            }
+            #countdown-container {
+                font-size: 8px;
+                margin-top: 10px;
+                margin: 15px;
+            }
+            #forget-password-modal {
+                font-size: 12px;
+            }
+            #forget-password-button {
+                font-size: 8px;
+            }
+            #password-container {
+                max-width: 300px;
+                position: relative;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- النجوم المتحركة -->
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+
+<div id="header-text">Hi Menna</div>
+
+<div id="password-container">
+    <img id="profile-image" src="profile-image.jpg" alt="Profile Image">
+    <h2>Enter Password</h2>
+    <input type="password" id="password" placeholder="Enter Password" onkeypress="handleKeyPress(event)">
+    <br>
+    <button onclick="checkPassword()">Submit</button>
+    <div id="countdown-container">
+        <div>The number of days and minutes remaining until September 9 is:</div>
+        <div id="countdown"></div>
+    </div>
+</div>
+
+<button id="forget-password-button" onclick="showForgetPasswordModal()">Forget my password</button>
+
+<div id="forget-password-modal">
+    <p>The first day we talked</p>
+    <button onclick="hideForgetPasswordModal()">Close</button>
+</div>
+
+<script>
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            checkPassword();
+        }
+    }
+
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+        if (password === "1402") {
+            window.location.href = "message.html"; // الانتقال إلى صفحة الرسالة عند إدخال كلمة مرور صحيحة
+        } else {
+            alert("Wrong password. Please try again.");
+        }
+    }
+
+    function updateCountdown() {
+        var today = new Date();
+        var year = today.getFullYear();
+        var targetDate = new Date(year, 8, 9); // 9 سبتمبر (شهر 8 لأن الشهور تبدأ من 0)
+
+        // إذا كانت تاريخ اليوم بعد تاريخ الهدف، ننتقل إلى العام القادم
+        if (today > targetDate) {
+            targetDate.setFullYear(year + 1);
+        }
+
+        var timeDifference = targetDate - today;
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds";
+    }
+
+    function showForgetPasswordModal() {
+        var modal = document.getElementById("forget-password-modal");
+        modal.style.display = "block";
+    }
+
+    function hideForgetPasswordModal() {
+        var modal = document.getElementById("forget-password-modal");
+        modal.style.display = "none";
+    }
+
+    // قم بتحديث العداد كل ثانية
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // تحديث العداد فور تحميل الصفحة
+</script>
