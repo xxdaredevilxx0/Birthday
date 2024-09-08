@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!❤</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #000428, #004e92); /* سما ليلية مع النجوم */
+            background: linear-gradient(-45beg,#00bfa5,#004e92,#00bfa5,#004e92);
+            background-size: 400% 400%;
+            animation: backgroundShift 20s infinite alternate;
+            animation: gradientAnimation 15s ease infinite;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        body.loaded{
+            opacity: 1;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes backgroundShift
+        {
+            0% {background-position: 0% 0% 50%;} 100%
+            {background-position: 100% 50%;}
+        }
+
+        #message-container {
+            text-align: center;
+            font-size: 50px;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        #message-container h1 {
+            font-size: 70px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin-top: 0;
+        }
+
+        #message-container p {
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            margin-top: 5px;
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            white-space: pre-wrap;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1100px;
+            max-height: 100px; /* حجم الحد الأقصى للارتفاع */
+            overflow-y: auto; /* تمكين التمرير العمودي */
+
+        }
+
+        #message-container p::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #message-container p::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        #message-container p::-webkit-scrollbar-thumb {
+            background: #00bfa5;
+            border-radius: 6px;
+        }
+
+        #play-music-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #00bfa5; /* لون أخضر متناسق مع الخلفية */
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 30px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        #play-music-button:hover {
+            background-color: #00d5b7;
+            box-shadow: 0 0 15px rgba(0, 191, 165, 0.8);
+        }
+        button:active {
+    transform: scale(0.95); /* تصغير الزر قليلاً عند الضغط عليه */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #profile-image {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #profile-image img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #00bfa5;
+            margin-right: 10px;
+        }
+
+        #profile-image span {
+            font-size: 26px;
+            color: #fff;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        #signature-image {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #signature-image img {
+            width: 150px; /* حجم الصورة الصغيرة */
+            height: auto;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+        }
+
+        /* قائمة الأغاني المنسدلة */
+        #music-menu {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.212);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            z-index: 100;
+        }
+
+        #music-menu select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #000000;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                align-items: center;
+                height: 70vh;
+                margin: 0;
+                color: #ffffff;
+                text-shadow: 2px 2px 4px #000000;
+                overflow: hidden;
+                padding: 0 10px;
+            }
+            #message-container {
+                font-size: 30px;
+                margin-top: 70px;
+                width: 70vw;
+                max-width: 250px;
+                height: auto; /* اجعل الارتفاع تلقائي */
+            }
+            #message-container h1 {
+                font-size: 20px;
+            }
+
+            #message-container p {
+                font-size: 18px;
+                max-width: 200px;
+                max-height: 150px; /* تحديد ارتفاع ثابت للرسالة */
+                overflow-y: auto; /* تمكين التمرير العمودي */
+                 
+            }
+            #message-container p::-webkit-scrollbar {
+                width: 5px;
+            }
+            #message-container p::-webkit-scrollbar-thumb {
+                background: #4caf50;
+                border-radius: 10px;
+            }
+            #play-music-button {
+                font-size: 14px;
+                position: fixed;
+                top: 25px;
+
+            }
+
+            #profile-image span {
+                font-size: 14px;
+            }
+
+            #profile-image img {
+                width: 40px;
+                height: 40px;
+            }
+
+            #signature-image img {
+                width: 70px;
+            }
+
+            #music-menu {
+                width: 200px;
+                padding: 10px;
+                z-index: 80;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="message-container">
+    <h1>❤ Happy Birthday ❤</h1>
+    <p id="message-text"></p>
+    <!-- صورة التوقيع بدلاً من النص -->
+    <div id="signature-image">
+        <img src="signature-image.jpg" alt="Signature Image">
+    </div>
+</div>
+
+<!-- زر تشغيل الموسيقى -->
+<button id="play-music-button" onclick="toggleMusic()">Play Music</button>
+
+<!-- صورة بروفايل و الاسم -->
+<div id="profile-image">
+    <img src="profile-image.jpg" alt="profile-image">
+    <span>Menna N. Muhammed</span>
+</div>
+
+<!-- قائمة الأغاني المنسدلة -->
+<div id="music-menu">
+    <select id="music-select" onchange="changeMusic()">
+        <option value="">Select a song</option>
+        <option value="song1.mp3">Nefsy Ahbek</option>
+        <option value="song2.mp3">3ashe2 Sar7 Fel Malakoot</option>
+        <option value="song3.mp3">Ana Lek Ala Toul</option>
+        <option value="song4.mp3">Kalamak Ya 7abibi</option>
+        <option value="song5.mp3">Mafi Mennik</option>
+        <option value="song6.mp3">Betewanes Beek</option>
+        <option value="song7.mp3">Seret El Hob</option>
+    </select>
+</div>
+
+<audio id="background-music" preload="auto"></audio>
+<audio id="typing-sound" src="typing-sound.mp3" preload="auto"></audio>
+<script>
+const text = `يـا مَـن لِـعَـيـنَـيـهِ فِـي الـطَـرف بَـهـرَجَـةٌ ... تَـسـيـلُ مِـنـهـا نُـهـي الأَلـبـابِ وَ الـنَـظَـر
+بصراحه مكنتش عارف كلامي هبدأ فيه إزاي أو اي فعلا يستاهل أبدأ بيه كلامي ، يعني لازم تبقي حاجة مميزة شوية فـ ملقتش أحلي من عيونك و سحرها
+عارفة يا منة أنا كنت دايمًا مقتنع إني مش هعرف أقوم تاني بصراحة و إني كدا شكرًا يعني إقتنعت بصراحة مش هقولك بقي شوفتك و كل دا إتغير يعني مش عايز أبقي أوفر أوي بس فتحتلك باب حسيتك مختلفة شخص جميل كدا و بحس إني مبسوط كدا لما أسمع أسمه أو أشوف صورته (يكلمني مثلًا و يطمن عليا ) منك كانت مختلفة ليها روح كدا فـ أنتِ بجد غيرتي كتير حرفيًا خليتي في معني كدا في معني حلو يبسط الواحد و يخليه يبتسم ، أنتي وجودك في أي حاجة بيخليها حلوة بيخلي حياتي حلوة عمومًا فـ أنا بجد بحبك أنتي بجد تستاهلي كدا أي حاجة حلوة تستاهلي كل حاجة حلوة و كان من ضمنها طبعًا عيونك الي عمري ما هلاقي أحلي منها يا منة 
+كل سنة و أنتِ طيبة يا حبيبتي ... كل سنة و أنتِ طيبة يا قلب مشمش
+❤❤❤`;
+    const messageElement = document.getElementById("message-text");
+    const audio = document.getElementById("background-music");
+    let index = 0;
+
+    function typeText() {
+        if (index < text.length) {
+            messageElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeText, 100); // تأخير بين الحروف
+        }
+    }
+
+    function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            document.getElementById("play-music-button").textContent = "Pause Music";
+        } else {
+            audio.pause();
+            document.getElementById("play-music-button").textContent = "Play Music";
+        }
+    }
+
+    function changeMusic() {
+        const select = document.getElementById("music-select");
+        const selectedSong = select.value;
+        if (selectedSong) {
+            audio.src = selectedSong;
+            audio.play();
+            document.getElementById("play-music-button").textContent = "Pause Music";
+        }
+    }
+    
+    window.onload = function() {
+        typeText(); // ابدأ كتابة النص عند تحميل الصفحة
+    };
+</script>
+
+</body>
+</html>
